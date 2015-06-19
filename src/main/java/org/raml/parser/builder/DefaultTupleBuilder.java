@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.beanutils.PropertyUtils;
 import org.raml.parser.annotation.Key;
 import org.raml.parser.annotation.Mapping;
 import org.raml.parser.annotation.Parent;
@@ -30,6 +29,7 @@ import org.raml.parser.annotation.Scalar;
 import org.raml.parser.annotation.Sequence;
 import org.raml.parser.resolver.DefaultTupleHandler;
 import org.raml.parser.resolver.TupleHandler;
+import org.raml.parser.utils.BeanUtil;
 import org.raml.parser.utils.ReflectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -163,7 +163,7 @@ public class DefaultTupleBuilder<K extends Node, V extends Node> implements Tupl
                 {
                     try
                     {
-                        value = PropertyUtils.getProperty(parent, parentAnnotation.property());
+                        value = BeanUtil.getProperty(parent, parentAnnotation.property());
                     }
                     catch (IllegalAccessException e)
                     {

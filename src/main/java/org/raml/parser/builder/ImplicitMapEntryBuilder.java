@@ -18,8 +18,8 @@ package org.raml.parser.builder;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.raml.parser.resolver.DefaultScalarTupleHandler;
+import org.raml.parser.utils.BeanUtil;
 import org.raml.parser.utils.ConvertUtils;
 import org.yaml.snakeyaml.nodes.Node;
 import org.yaml.snakeyaml.nodes.ScalarNode;
@@ -60,7 +60,7 @@ public class ImplicitMapEntryBuilder extends DefaultTupleBuilder<ScalarNode, Nod
         Map actualParent;
         try
         {
-            actualParent = (Map) new PropertyUtilsBean().getProperty(parent, fieldName);
+            actualParent = (Map) BeanUtil.getProperty(parent, fieldName);
             Object newValue = valueClass.newInstance();
             Object key = ConvertUtils.convertTo(keyValue, keyClass);
             actualParent.put(key, newValue);

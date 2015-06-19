@@ -31,7 +31,6 @@ import org.raml.parser.loader.DefaultResourceLoader;
 import org.raml.parser.loader.ResourceLoader;
 import org.raml.parser.tagresolver.IncludeResolver;
 import org.raml.parser.tagresolver.JacksonTagResolver;
-import org.raml.parser.tagresolver.JaxbTagResolver;
 import org.raml.parser.tagresolver.TagResolver;
 import org.yaml.snakeyaml.nodes.MappingNode;
 
@@ -56,7 +55,6 @@ public class RamlDocumentBuilder extends YamlDocumentBuilder<Raml>
         TagResolver[] defaultResolvers = new TagResolver[] {
                 new IncludeResolver(),
                 new JacksonTagResolver(),
-                new JaxbTagResolver()
         };
         return (TagResolver[]) ArrayUtils.addAll(defaultResolvers, tagResolvers);
     }

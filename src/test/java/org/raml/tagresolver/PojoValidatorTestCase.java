@@ -39,9 +39,8 @@ public class PojoValidatorTestCase extends AbstractRamlTestCase
     public void pojoNotFound()
     {
         List<ValidationResult> validationResults = validateRaml("org/raml/tagresolver/pojo-validator-not-found.yaml");
-        assertThat(validationResults.size(), is(2));
+        assertThat(validationResults.size(), is(1));
         assertThat(validationResults.get(0).getMessage(), containsString("Class not found org.raml.tagresolver.user"));
-        assertThat(validationResults.get(1).getMessage(), containsString("Class not found org.raml.tagresolver.Users"));
     }
 
     @Test
@@ -55,19 +54,15 @@ public class PojoValidatorTestCase extends AbstractRamlTestCase
     {
         Raml raml = parseRaml("org/raml/tagresolver/pojo-validator-found.yaml");
 
-        assertThat(raml.getSchemas().size(), is(2));
+        assertThat(raml.getSchemas().size(), is(1));
         assertThat(raml.getSchemas().get(0).get("userjson"), containsString("\"username\":{\"type\":\"string\",\"required\":true}"));
-        assertThat(raml.getSchemas().get(1).get("userxml"), containsString("<xs:attribute name=\"username\" type=\"xs:string\" use=\"required\"/>"));
 
         Map<ActionType,Action> actions = raml.getResources().get("/resource").getActions();
 
         assertThat(actions.get(POST).getBody().get("application/json").getSchema(), containsString("\"username\":{\"type\":\"string\",\"required\":true}"));
-        assertThat(actions.get(POST).getBody().get("text/xml").getSchema(), containsString("<xs:attribute name=\"username\" type=\"xs:string\" use=\"required\"/>"));
 
         assertThat(actions.get(PUT).getBody().get("application/json").getSchema(), containsString("\"username\":{\"type\":\"string\",\"required\":true}"));
-        assertThat(actions.get(PUT).getBody().get("text/xml").getSchema(), containsString("<xs:attribute name=\"username\" type=\"xs:string\" use=\"required\"/>"));
 
         assertThat(actions.get(PATCH).getBody().get("application/json").getSchema(), containsString("userjson"));
-        assertThat(actions.get(PATCH).getBody().get("text/xml").getSchema(), containsString("userxml"));
     }
 }

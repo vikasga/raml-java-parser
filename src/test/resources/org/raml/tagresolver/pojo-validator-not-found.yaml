@@ -5,6 +5,4 @@ title: pojo validator
         body:
             application/json:
                 schema: !jackson org.raml.tagresolver.user
-            application/xml:
-                schema: !jaxb org.raml.tagresolver.Users
 

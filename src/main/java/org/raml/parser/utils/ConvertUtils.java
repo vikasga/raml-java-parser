@@ -17,13 +17,10 @@ package org.raml.parser.utils;
 
 import java.lang.reflect.Constructor;
 
-import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang.ClassUtils;
 
 public class ConvertUtils
 {
-
-    private static BooleanConverter booleanConverter = new BooleanConverter();
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static <T> T convertTo(String value, Class<T> type)
@@ -39,7 +36,28 @@ public class ConvertUtils
         }
         if (clazz.getName().equals(Boolean.class.getName()))
         {
-            return clazz.cast(booleanConverter.convert(Boolean.class, value));
+            try
+            {
+                String stringValue = value.toString();
+                if (stringValue.equalsIgnoreCase("yes") || stringValue.equals("y")
+                        || stringValue.equalsIgnoreCase("true") || stringValue.equals("t"))
+                {
+                    return (T)(Boolean.TRUE);
+                }
+                else if (stringValue.equalsIgnoreCase("no") || stringValue.equals("n")
+                        || stringValue.equalsIgnoreCase("false") || stringValue.equalsIgnoreCase("f"))
+                {
+                    return (T)(Boolean.FALSE);
+                }
+                else
+                {
+                    throw new ConversionException(stringValue);
+                }
+            }
+            catch (ClassCastException e)
+            {
+                throw new ConversionException(e);
+            }
         }
         try
         {
@@ -48,10 +66,8 @@ public class ConvertUtils
         }
         catch (Exception e)
         {
-            //ignore;
+            throw new ConversionException(e);
         }
-
-        return clazz.cast(org.apache.commons.beanutils.ConvertUtils.convert(value, type));
     }
 
     public static boolean canBeConverted(String value, Class<?> type)
