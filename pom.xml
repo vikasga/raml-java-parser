@@ -136,7 +136,7 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.13</version>
+            <version>1.13-compact2</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -216,4 +216,14 @@
         </snapshotRepository>
     </distributionManagement>
 
+    <repositories>
+        <repository>
+            <id>ramld .mvn-repo</id>
+            <url>https://raw.githubusercontent.com/vikasga/raml-java-parser/compact2/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
