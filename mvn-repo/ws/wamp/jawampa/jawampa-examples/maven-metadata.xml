@@ -3,10 +3,9 @@
   <groupId>ws.wamp.jawampa</groupId>
   <artifactId>jawampa-examples</artifactId>
   <versioning>
-    <release>0.4.1-STAGING</release>
     <versions>
-      <version>0.4.1-STAGING</version>
+      <version>0.4.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20150717090205</lastUpdated>
+    <lastUpdated>20150717091425</lastUpdated>
   </versioning>
 </metadata>
