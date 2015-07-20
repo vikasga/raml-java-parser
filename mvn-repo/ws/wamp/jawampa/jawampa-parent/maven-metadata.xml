@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>ws.wamp.jawampa</groupId>
-  <artifactId>jawampa-netty</artifactId>
+  <artifactId>jawampa-parent</artifactId>
   <versioning>
     <versions>
       <version>0.4.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20150720052955</lastUpdated>
+    <lastUpdated>20150720052949</lastUpdated>
   </versioning>
 </metadata>
