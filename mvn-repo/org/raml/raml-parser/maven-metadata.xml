@@ -3,10 +3,11 @@
   <groupId>org.raml</groupId>
   <artifactId>raml-parser</artifactId>
   <versioning>
-    <release>0.8.11-compact2</release>
+    <release>0.8.12-compact2</release>
     <versions>
       <version>0.8.11-compact2</version>
+      <version>0.8.12-compact2</version>
     </versions>
-    <lastUpdated>20150619113239</lastUpdated>
+    <lastUpdated>20160113100414</lastUpdated>
   </versioning>
 </metadata>

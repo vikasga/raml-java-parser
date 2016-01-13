@@ -15,23 +15,19 @@
  */
 package org.raml.model;
 
+import org.raml.model.parameter.Header;
+import org.raml.model.parameter.QueryParameter;
+import org.raml.model.parameter.UriParameter;
+import org.raml.parser.annotation.*;
+import org.raml.parser.resolver.MimeTypeHandler;
+import org.raml.parser.resolver.ResponseHandler;
+import org.raml.parser.rule.SecurityReferenceSequenceRule;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.raml.model.parameter.Header;
-import org.raml.model.parameter.QueryParameter;
-import org.raml.model.parameter.UriParameter;
-import org.raml.parser.annotation.Key;
-import org.raml.parser.annotation.Mapping;
-import org.raml.parser.annotation.Parent;
-import org.raml.parser.annotation.Scalar;
-import org.raml.parser.annotation.Sequence;
-import org.raml.parser.resolver.MimeTypeHandler;
-import org.raml.parser.resolver.ResponseHandler;
-import org.raml.parser.rule.SecurityReferenceSequenceRule;
 
 public class Action implements Serializable
 {
@@ -43,6 +39,9 @@ public class Action implements Serializable
 
     @Scalar
     private String description;
+
+    @Scalar(required = true, alias = "iox.operation")
+    private Operation operation;
 
     @Mapping
     private Map<String, Header> headers = new LinkedHashMap<String, Header>();
@@ -93,6 +92,14 @@ public class Action implements Serializable
     public void setDescription(String description)
     {
         this.description = description;
+    }
+
+    public Operation getOperation(){
+        return operation;
+    }
+
+    public void setOperation(Operation operation){
+        this.operation = operation;
     }
 
     public Map<String, Header> getHeaders()

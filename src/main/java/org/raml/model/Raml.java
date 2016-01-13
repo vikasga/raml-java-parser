@@ -38,6 +38,9 @@ public class Raml implements Serializable
     @Scalar(required = true)
     private String title;
 
+    @Scalar(required = true, alias = "iox.service")
+    private String service;
+
     @Scalar()
     private String version;
 
@@ -106,6 +109,16 @@ public class Raml implements Serializable
     public void setTitle(String title)
     {
         this.title = title;
+    }
+
+    public String getService()
+    {
+        return service;
+    }
+
+    public void setService(String service)
+    {
+        this.service = service;
     }
 
     public String getVersion()

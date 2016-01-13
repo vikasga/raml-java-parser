@@ -15,6 +15,18 @@
  */
 package org.raml.model.parameter;
 
+import org.raml.parser.annotation.Scalar;
+
 public class Header extends AbstractParam
 {
+    @Scalar(required = false, alias = "iox.value")
+    private String value;
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 }

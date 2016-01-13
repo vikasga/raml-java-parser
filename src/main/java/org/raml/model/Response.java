@@ -15,14 +15,17 @@
  */
 package org.raml.model;
 
-import java.io.Serializable;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import org.raml.model.parameter.Header;
 import org.raml.parser.annotation.Mapping;
 import org.raml.parser.annotation.Scalar;
+import org.raml.parser.annotation.Sequence;
 import org.raml.parser.resolver.MimeTypeHandler;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Response implements Serializable
 {
@@ -37,6 +40,9 @@ public class Response implements Serializable
 
     @Mapping
     private Map<String, Header> headers = new LinkedHashMap<String, Header>();
+
+    @Sequence(alias = "iox.errorCodes")
+    private List<String> errorCodes = new ArrayList<String>();
 
     public Map<String, Header> getHeaders()
     {
@@ -71,5 +77,13 @@ public class Response implements Serializable
     public boolean hasBody()
     {
         return body != null && !body.isEmpty();
+    }
+
+    public List<String> getErrorCodes() {
+        return errorCodes;
+    }
+
+    public void setErrorCodes(List<String> errorCodes) {
+        this.errorCodes = errorCodes;
     }
 }
